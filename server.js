@@ -23,6 +23,10 @@ const connection =mysql.createConnection({
 
 connection.connect();
 
+const multer=require('multer');
+const upload= multer({dest:'./upload'})
+
+
 app.get('/api/customers',(req,res)=>{
     connection.query(
         "SELECT * FROM CUSTOMER",
@@ -33,4 +37,28 @@ app.get('/api/customers',(req,res)=>{
       );
     });
 
+    app.use('/image',express.static('./upload'));//사용자가 upload 폴더에 접근 가능하도록  image 폴더에서 서버의 upload 폴더에 접근 가능
+
+    app.post('/api/customers',upload.single('image'),(req,res)=> 
+    {
+        let sql='INSERT INTO CUSTOMER VALUES(null,?,?,?,?,?)';
+        let image='/image/'+ req.file.filename;
+        let name=req.body.name;
+        let birthday=req.body.birthday;
+        let gender=req.body.gender;
+        let job=req.body.job;
+        console.log(name);
+        console.log(image);
+        console.log(birthday);
+        console.log(gender);
+        console.log(job);
+        
+
+        let params=[image, name, birthday, gender, job];//  ?표 부분에 바인딩 되어서 들어가게 한다 
+        connection.query(sql, params,
+            (err,rows,fields)=>{
+                res.send(rows);
+            }
+         );
+    })
     app.listen(port, ()=>console.log(`Listening on port ${port}`));
