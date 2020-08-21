@@ -47,7 +47,6 @@ componentDidMount(){
   
 }
 
-
 callApi= async() => {
   const response = await fetch('/api/customers');
   const body = await response.json();
