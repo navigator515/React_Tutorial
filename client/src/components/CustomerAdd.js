@@ -7,6 +7,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import {withStyles} from '@material-ui/core/styles'
+import { TextareaAutosize } from '@material-ui/core';
 
 
 const styles=theme=>({
@@ -61,7 +62,8 @@ class CustomerAdd extends React.Component{
                 birthday:'',
                 gender:'',
                 job:'',
-                fileName:''
+                fileName:'',
+                open:false
             })
             // window.location.reload();  //전체 새로고침 
             this.props.stateRefresh();
@@ -105,24 +107,25 @@ handleClose=()=>{
         const{classes}=this.props;
         return(
             <div>
-                <Button variant="contained" color="primary" onClick={this.handleClickOpen} >고객 추가하기</Button>
+                <div class="sprite_camera_icon" onClick={this.handleClickOpen} ></div>
+                
                 <Dialog open={this.state.open} onClose={this.handleClose}>
-                    <DialogTitle>고객 추가</DialogTitle>
-                    <DialogContent>
+                    <DialogTitle align="center">게시물 추가</DialogTitle>
+                    <DialogContent align="center">
                     <input className={classes.hidden} accept="image/*" id="raised-button-file" type="file" file={this.state.file} value={this.state.fileName} onChange={this.handleFileChange} />
                     <label htmlFor="raised-button-file">
                     <Button variant="contained" color="primary" component="span" name="file">
-                    {this.state.fileName === ''? "프로필 이미지 선택" : this.state.fileName}
+                    {this.state.fileName === ''? "게시글 이미지 선택" : this.state.fileName}
                     </Button>
                     </label><br/>
 
 
-                      <TextField label="이름" type="text" name="userName" value={this.state.userName} onChange={this.state.userName} onChange ={this.handleValueChange}/><br/>
-                         <TextField label="생년월일" type="text" name="birthday" value={this.state.birthday} onChange={this.handleValueChange}/><br/>
-                      <TextField label="성별" type="text" name="gender" value={this.state.gender} onChange={this.handleValueChange}/><br/>
-                       <TextField label="직업" type="text" name="job" value={this.state.job} onChange={this.handleValueChange}/><br/>
+                      <TextField label="계정" type="text" name="userName" value={this.state.userName} onChange={this.state.userName} onChange ={this.handleValueChange}/><br/>
+                         <TextField label="장소" type="text" name="birthday" value={this.state.birthday} onChange={this.handleValueChange}/><br/><br/>
+                      <textarea cols="30" rows="10"label="내용" type="text" name="gender" value={this.state.gender} onChange={this.handleValueChange}/><br/>
+                       {/* <TextField label="직업" type="text" name="job" value={this.state.job} onChange={this.handleValueChange}/><br/> */}
 
-                    </DialogContent>
+                        </DialogContent>
                     <DialogActions>
 
                         <Button variant="contained" color="primary" onClick={this.handleFormSubmit}>추가</Button>

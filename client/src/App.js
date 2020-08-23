@@ -27,7 +27,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 
-
 const styles = theme => ({
   root: {
   width: "100%",
@@ -163,7 +162,7 @@ handleValueChange=(e)=>{
   nextState[e.target.name]=e.target.value;
   this.setState(nextState);
 }
-
+///////////////////////////////render////////////////////////////
 render() {
 
   const filteredComponents = (data) => {
@@ -180,6 +179,44 @@ render() {
   const cellList = ["번호", "프로필 이미지", "이름", "생년월일", "성별", "직업", "설정"]
   return (
   <div className={classes.root}>
+    <header id="header">
+        <section class="inner">
+
+            <h1 class="logo">
+                <a href="index.html">
+                    <div class="sprite_insta_icon"></div>
+                    <div class="sprite_write_logo"></div>
+                </a>
+            </h1>
+
+            <div class="search_box">
+                <input type="text" placeholder="검색" id="search-field" 
+                      classes={{
+                      root: classes.inputRoot,
+                        input: classes.inputInput,
+                      }}
+                      name="searchKeyword"
+                      value={this.state.searchKeyword}
+                      onChange={this.handleValueChange}/>
+
+                <div class="fake_field" >
+                    <span class="sprite_small_search_icon"></span>
+                    
+                    <span >검색</span>
+                </div>
+            </div>
+
+            <div class="right_icons">
+            <CustomerAdd stateRefresh={this.stateRefresh} />
+                {/* <a href="new_post.html"><div class="sprite_camera_icon"></div></a> */}
+                <a href="login.html"><div class="sprite_compass_icon"></div></a>
+                <a href="follow.html"><div class="sprite_heart_icon_outline"></div></a>
+                <a href="profile.html"><div class="sprite_user_icon_outline"></div></a>
+            </div>
+
+        </section>
+
+    </header>
   <AppBar position="static">
   <Toolbar>
   <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
@@ -203,22 +240,19 @@ render() {
   value={this.state.searchKeyword}
   onChange={this.handleValueChange}
   />
+  {/* <CustomerAdd stateRefresh={this.stateRefresh} /> */}
   </div>
   </Toolbar>
   </AppBar>
+
+
   <div className={classes.menu}>
-  <CustomerAdd stateRefresh={this.stateRefresh} />
+  
   </div>
-  <Paper className={classes.paper}>
-  <Table>
-  <TableHead>
-  <TableRow>
-  {cellList.map(c => {
-  return <TableCell className={classes.tableHead}>{c}</TableCell>
-  })}
-  </TableRow>
-  </TableHead>
-  <TableBody>
+
+
+  {/* <Main_container/> */}
+
   {this.state.customers ?
 filteredComponents(this.state.customers) :
 
@@ -228,9 +262,27 @@ filteredComponents(this.state.customers) :
   </TableCell>
   </TableRow>
   }
+
+  {/* <Paper className={classes.paper}>
+  <Table>
+  <TableHead>
+
+
+  {/* <TableRow>
+  {cellList.map(c => {
+  return <TableCell className={classes.tableHead}>{c}</TableCell>
+  })}
+  </TableRow> */}
+  {/* </TableHead>
+
+ 
+
+
+  <TableBody>
+  
   </TableBody>
   </Table>
-  </Paper>
+  </Paper> */} */}
   </div>
   );
   }

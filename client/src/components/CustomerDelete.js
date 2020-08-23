@@ -16,16 +16,10 @@ import Typography from '@material-ui/core/Typography';
 
 class CustomerDelete extends React.Component {
 
-
-
 constructor(props) {
-
 super(props);
-
 this.state = {
-
 open: false
-
 }
 
 this.handleClickOpen = this.handleClickOpen.bind(this)
@@ -34,30 +28,17 @@ this.handleClose = this.handleClose.bind(this);
 
 }
 
-
-
 handleClickOpen() {
-
 this.setState({
-
 open: true
-
 });
-
 }
-
 
 handleClose() {
-
 this.setState({
-
 open: false
-
 })
-
 }
-
-
 
 deleteCustomer(id){
 
@@ -73,15 +54,13 @@ this.props.stateRefresh();
 
 }
 
-
+//////////////////////////////////render///////////////
 
 render() {
-
 return (
-
 <div>
 
-<Button variant="contained" color="secondary" onClick={this.handleClickOpen}>
+<Button variant="contained" onClick={this.handleClickOpen}>
 
 삭제
 
@@ -89,7 +68,7 @@ return (
 
 <Dialog onClose={this.handleClose} open={this.state.open}>
 
-<DialogTitle onClose={this.handleClose}>
+    <DialogTitle onClose={this.handleClose}>
 
 삭제 경고
 
@@ -105,7 +84,7 @@ return (
 
 </DialogContent>
 
-<DialogActions>
+        <DialogActions>
 
 <Button variant="contained" color="primary" onClick={(e) => {this.deleteCustomer(this.props.id)}}>삭제</Button>
 
