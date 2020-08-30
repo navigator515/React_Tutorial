@@ -1,8 +1,10 @@
 import React ,{Component} from 'react';
+
 import { Button } from '@material-ui/core';
 import {post} from 'axios';
+
 import './NewPost.css'
-import {Link} from 'react-router-dom';
+import {BrowserRouter, Link} from 'react-router-dom';
 class NewPost extends Component{
     constructor(props){
         super(props);
@@ -15,8 +17,11 @@ class NewPost extends Component{
             fileName: '',
             open :false,
             previewURL : ''
-        }  
+        }
+        
     }
+  
+
     addCustomer=() =>{
         const url='/api/customers';
         const formData=new FormData();
@@ -53,14 +58,21 @@ class NewPost extends Component{
              window.location.reload();  //전체 새로고침 
             this.props.stateRefresh();
     }
- 
+ //하나의 파일만 선택해서 올릴 수 있도록 구성  그래서 0인덱스..
+ handleFileChange = (e) => {
+    this.setState({
+        file : e.target.files[0],  
+        fileName : e.target.value
+
+    })
+}
     handleValueChange=(e)=>{
         let nextState={};
         nextState[e.target.name]=e.target.value;
         this.setState(nextState);
     }
 
-    //이미지 파일 읽어서 미리보기 기능 추가
+    
       handleFileOnChange = (e) => {
         e.preventDefault();
         let reader = new FileReader();
@@ -81,21 +93,22 @@ class NewPost extends Component{
       }
 
 render(){
-return(
+   
+    return(
 
 <div id="main_container">
- <div className="post_form_container">
+
+<div className="post_form_container">
     <form action="#" className="post_form">
         <div className="title">
             NEW POST
         </div>
             <div className="preview">
 
-    {this.state.file ?
-      <img className='profile_preview' 
-      src={this.state.previewURL} 
-      style={{width: '300px', height: '300px', margin:'79px' }}></img>
-            :   
+            {this.state.file ?
+      <img className='profile_preview' src={this.state.previewURL} style={{width: '300px', height: '300px', margin:'79px' }}></img>
+    :
+    
         <div class="preview">
         <div class="upload">
             <div class="post_btn" >
@@ -108,7 +121,10 @@ return(
         </div>
     </div>
     }
+    
+            
         </div>
+            
     <div>
       <input type='file' 
           accept='image/*' 
@@ -131,18 +147,24 @@ return(
          <p> </p>
          </div>
         <p>
-         <textarea cols="50" rows="5"label="내용" 
+
+        
+        <textarea cols="50" rows="5"label="내용"
          type="text" name="gender" 
          value={this.state.gender} 
          placeholder="140자 까지 등록 가능합니다.
          #태그명 을 통해서 검색 태그를 등록할 수 있습니다.
-         예시 : I # love # insta!" 
-        onChange={this.handleValueChange}/><br/>
+         예시 : I # love # insta!"
+          onChange={this.handleValueChange}/><br/>
+        
+
         </p>
-   <div><Button clasㄴ="submit_btn" type="submit" value="저장" onClick={this.handleFormSubmit}>저장<Link to="/"></Link></Button></div>
+    <Link to="/"><Button className="submit_btn" type="submit" value="저장" onClick={this.handleFormSubmit}>저장</Button></Link>
     </form>
+
 </div>
 </div>
+
     )
 }
 }
