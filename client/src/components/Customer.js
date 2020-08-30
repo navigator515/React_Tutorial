@@ -48,7 +48,7 @@ class Customer extends React.Component{
 
                     <div className="likes m_text">
                         좋아요
-                        <span id="like-count-39">2,346</span>
+                        <span id="like-count-39">7</span>
                         <span id="bookmark-count-39"></span>
                         개
                     </div>
@@ -65,7 +65,7 @@ class Customer extends React.Component{
                         </div>
                     </div>
 
-                    <div className="timer">1시간 전</div>
+                    <div className="timer">방금 전</div>
 
                     <div className="comment_field" id="add-comment-post37">
                         <input type="text" placeholder="댓글달기..."/>
