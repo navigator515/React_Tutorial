@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {BrowserRouter, Route, Switch, Link} from 'react-router-dom';
+import { Link} from 'react-router-dom';
 
 class Header extends Component{
     
@@ -34,25 +34,17 @@ class Header extends Component{
             </div>
 
             <div className="right_icons">
-            {/* <CustomerAdd stateRefresh={this.stateRefresh} /> */}
-              {/* <a href="new_post.html"><div class="sprite_camera_icon"></div></a> */}
-                
+            
                 <Link to="/NewPost"onClick={function(){
                         console.log('camera ');
-                    // this.state.mode='create';
-                    // this.setState({
-                    //     mode:'create'
-                    // });
+                   
                     this.props.onChangePage();      
                 }.bind(this)}>
                     <div className="sprite_camera_icon"/></Link>
 
                 <Link to="/login" onClick={function(){
                     console.log('camera ');
-                    // this.state.mode='create';
-                    // this.setState({
-                    //     mode:'create'
-                    // });
+                  
                     this.props.onChangePage();
                 }.bind(this)}>
                 <div className="sprite_compass_icon"></div></Link>
@@ -60,12 +52,9 @@ class Header extends Component{
                 <Link to="/follow"><div className="sprite_heart_icon_outline"></div></Link>
                 <Link to="/profile"><div className="sprite_user_icon_outline"></div></Link>
             </div>
-
         </section>
-
     </header>
         )
     }
 }
-
 export default Header;

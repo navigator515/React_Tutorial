@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import TableRow from '@material-ui/core/TableRow';
-import TableCell from '@material-ui/core/TableCell';
 import Customer from "./Customer";
-
 
 class Main extends Component{
     
@@ -27,9 +24,7 @@ class Main extends Component{
       componentWillUnmount() {
         clearInterval(this.timer);
         }
-      
-      
-        
+     
       callApi= async() => {
         const response = await fetch('/api/customers');
         const body = await response.json();
@@ -50,7 +45,7 @@ class Main extends Component{
             const{completed} =this.props.completed;
             this.setState({completed: completed >=100 ? 0 : completed+1});
           }
-    render(){
+   render(){
         
         const filteredComponents = (data) => {
             data = data.filter((c) => {
@@ -65,13 +60,10 @@ class Main extends Component{
             <div >
             {this.props.customers ?
                 filteredComponents(this.props.customers) :
-                
-                      <CircularProgress variant="determinate" value={this.props.completed} />
-                    
-                  }
+               <CircularProgress variant="determinate" value={this.props.completed} />
+            }
               </div>
           )
     }
 }
-
 export default Main;
