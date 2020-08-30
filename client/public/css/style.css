@@ -162,7 +162,7 @@ background:#fafafa;
     max-width: 614px;
     border: 1px solid rgba(0,0,0,0.09);
     border-radius: 3px;
-    margin-bottom: 60px;
+    margin-bottom: 0px;
     background: white;
 }
 
@@ -294,7 +294,7 @@ background:#fafafa;
 .contents .comment_field{
     min-height:56px;
     padding: 0 20px;
-    position: relative;
+    position: relative; 
 }
 
 

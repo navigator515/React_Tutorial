@@ -104,7 +104,7 @@ handleClose=()=>{
 
 }
     render(){
-        const{classes}=this.props;
+    const{classes}=this.props;
         return(
             <div>
                 <div class="sprite_camera_icon" onClick={this.handleClickOpen} ></div>
@@ -112,7 +112,7 @@ handleClose=()=>{
                 <Dialog open={this.state.open} onClose={this.handleClose}>
                     <DialogTitle align="center">게시물 추가</DialogTitle>
                     <DialogContent align="center">
-                    <input className={classes.hidden} accept="image/*" id="raised-button-file" type="file" file={this.state.file} value={this.state.fileName} onChange={this.handleFileChange} />
+                     <input className={classes.hidden} accept="image/*" id="raised-button-file" type="file" file={this.state.file} value={this.state.fileName} onChange={this.handleFileChange} />
                     <label htmlFor="raised-button-file">
                     <Button variant="contained" color="primary" component="span" name="file">
                     {this.state.fileName === ''? "게시글 이미지 선택" : this.state.fileName}
@@ -122,7 +122,7 @@ handleClose=()=>{
 
                       <TextField label="계정" type="text" name="userName" value={this.state.userName} onChange={this.state.userName} onChange ={this.handleValueChange}/><br/>
                          <TextField label="장소" type="text" name="birthday" value={this.state.birthday} onChange={this.handleValueChange}/><br/><br/>
-                      <textarea cols="30" rows="10"label="내용" type="text" name="gender" value={this.state.gender} onChange={this.handleValueChange}/><br/>
+                        <textarea cols="30" rows="10"label="내용" type="text" name="gender" value={this.state.gender} onChange={this.handleValueChange}/><br/>
                        {/* <TextField label="직업" type="text" name="job" value={this.state.job} onChange={this.handleValueChange}/><br/> */}
 
                         </DialogContent>

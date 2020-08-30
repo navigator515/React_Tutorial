@@ -27,6 +27,11 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 
+import Header from './components/Header'
+import Main from './components/Main'
+import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
+import NewPost from './components/NewPost';
+import Login from './components/Login';
 const styles = theme => ({
   root: {
   width: "100%",
@@ -108,14 +113,11 @@ const styles = theme => ({
 
 class App extends Component 
 {
-  // state={
-  //   customers: "",
-  //   completed: 0
-  // }
 constructor(props){
   super(props);
   this.state={
-    customers:'',
+    mode:'read',
+  customers:'',
     completed:0,
     searchKeyword:''
   }
@@ -164,129 +166,47 @@ handleValueChange=(e)=>{
 }
 ///////////////////////////////render////////////////////////////
 render() {
-
-  const filteredComponents = (data) => {
-    data = data.filter((c) => {
-    return c.name.indexOf(this.state.searchKeyword) > -1;
-    });
-    return data.map((c) => {
-    return <Customer stateRefresh={this.stateRefresh} key={c.id} id={c.id} image={c.image} name={c.name} birthday={c.birthday} gender={c.gender} job={c.job} />
-    });
-    }
+  
+  // const filteredComponents = (data) => {
+  //   data = data.filter((c) => {
+  //   return c.name.indexOf(this.state.searchKeyword) > -1;
+  //   });
+  //   return data.map((c) => {
+  //   return <Customer stateRefresh={this.stateRefresh} key={c.id} id={c.id} image={c.image} name={c.name} birthday={c.birthday} gender={c.gender} job={c.job} />
+  //   });
+  //   }  
     
 
-  const { classes } = this.props;
-  const cellList = ["번호", "프로필 이미지", "이름", "생년월일", "성별", "직업", "설정"]
+  // const { classes } = this.props;//this.props 대신 classses 로 대체 한다
   return (
-  <div className={classes.root}>
-    <header id="header">
-        <section class="inner">
-
-            <h1 class="logo">
-                <a href="index.html">
-                    <div class="sprite_insta_icon"></div>
-                    <div class="sprite_write_logo"></div>
-                </a>
-            </h1>
-
-            <div class="search_box">
-                <input type="text" placeholder="검색" id="search-field" 
-                      classes={{
-                      root: classes.inputRoot,
-                        input: classes.inputInput,
-                      }}
-                      name="searchKeyword"
-                      value={this.state.searchKeyword}
-                      onChange={this.handleValueChange}/>
-
-                <div class="fake_field" >
-                    <span class="sprite_small_search_icon"></span>
-                    
-                    <span >검색</span>
-                </div>
-            </div>
-
-            <div class="right_icons">
-            <CustomerAdd stateRefresh={this.stateRefresh} />
-                {/* <a href="new_post.html"><div class="sprite_camera_icon"></div></a> */}
-                <a href="login.html"><div class="sprite_compass_icon"></div></a>
-                <a href="follow.html"><div class="sprite_heart_icon_outline"></div></a>
-                <a href="profile.html"><div class="sprite_user_icon_outline"></div></a>
-            </div>
-
-        </section>
-
-    </header>
-  <AppBar position="static">
-  <Toolbar>
-  <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
-  <MenuIcon />
-  </IconButton>
-  <Typography className={classes.title} variant="h6" color="inherit" noWrap>
-  고객 관리 시스템
-  </Typography>
-  <div className={classes.grow} />
-  <div className={classes.search}>
-  <div className={classes.searchIcon}>
-  <SearchIcon />
-  </div>
-  <InputBase
-  placeholder="검색하기"
-  classes={{
-  root: classes.inputRoot,
-  input: classes.inputInput,
-  }}
-  name="searchKeyword"
-  value={this.state.searchKeyword}
-  onChange={this.handleValueChange}
-  />
-  {/* <CustomerAdd stateRefresh={this.stateRefresh} /> */}
-  </div>
-  </Toolbar>
-  </AppBar>
-
-
-  <div className={classes.menu}>
-  
-  </div>
-
-
-  {/* <Main_container/> */}
-
-  {this.state.customers ?
-filteredComponents(this.state.customers) :
-
-  <TableRow>
-  <TableCell colSpan="6" align="center">
-  <CircularProgress className={classes.progress} variant="determinate" value={this.state.completed} />
-  </TableCell>
-  </TableRow>
-  }
-
-  {/* <Paper className={classes.paper}>
-  <Table>
-  <TableHead>
-
-
-  {/* <TableRow>
-  {cellList.map(c => {
-  return <TableCell className={classes.tableHead}>{c}</TableCell>
-  })}
-  </TableRow> */}
-  {/* </TableHead>
-
+   <div> 
+    <Header classes='this.props'
+    onChangePage={function(){
+      // //alert('hihihi');
+      // //this.setState({
+      //   mode:'create'
+      // });
+    }.bind(this)}> </Header>
  
+ <div>
+     <Route exact path='/'> <Main 
+      customers={this.state.customers}
+      completed={this.state.completed}
+      searchKeyword={this.state.searchKeyword}
+      ></Main>   </Route>
 
+      <Route path="/NewPost"><NewPost stateRefresh={this.stateRefresh} ></NewPost></Route>
+      <Route path="/Login"><Login></Login></Route>
 
-  <TableBody>
-  
-  </TableBody>
-  </Table>
-  </Paper> */} */}
   </div>
+
+    
+
+    
+    </div>
   );
   }
   }
   
 
-export default withStyles(styles)(App);
+export default App;

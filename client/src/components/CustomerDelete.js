@@ -52,6 +52,11 @@ method: 'DELETE'
 
 this.props.stateRefresh();
 
+this.setState({
+    open: false
+    })
+    window.location.reload();   //전체 새로고침
+
 }
 
 //////////////////////////////////render///////////////
@@ -86,7 +91,7 @@ return (
 
         <DialogActions>
 
-<Button variant="contained" color="primary" onClick={(e) => {this.deleteCustomer(this.props.id)}}>삭제</Button>
+    <Button variant="contained" color="primary" onClick={(e) => {this.deleteCustomer(this.props.id)}}>삭제</Button>
 
 <Button variant="outlined" color="primary" onClick={this.handleClose}>닫기</Button>
 
