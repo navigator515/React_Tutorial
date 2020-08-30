@@ -29,7 +29,7 @@ class NewPost extends Component{
         formData.append('name', this.state.userName);
         formData.append('birthday', this.state.birthday);
         formData.append('gender', this.state.gender);
-        formData.append('job', this.state.job);
+       // formData.append('job', this.state.job);
 
         const config={
             headers:{
@@ -109,9 +109,9 @@ render(){
       <img className='profile_preview' src={this.state.previewURL} style={{width: '300px', height: '300px', margin:'79px' }}></img>
     :
     
-        <div class="preview">
-        <div class="upload">
-            <div class="post_btn" >
+        <div className="preview">
+        <div className="upload">
+            <div className="post_btn" >
                 <div className="plus_icon"><span></span>
                     <span></span>
                 </div>
@@ -154,8 +154,7 @@ render(){
          value={this.state.gender} 
          placeholder="140자 까지 등록 가능합니다.
          #태그명 을 통해서 검색 태그를 등록할 수 있습니다.
-         예시 : I # love # insta!"
-          onChange={this.handleValueChange}/><br/>
+         예시 : I # love # insta!" onChange={this.handleValueChange}/><br/>
         
 
         </p>

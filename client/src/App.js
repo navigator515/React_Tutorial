@@ -3,12 +3,14 @@ import './App.css';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import Header from './components/Header'
 import Main from './components/Main'
-import {  Route} from 'react-router-dom';
+import { BrowserRouter, Route} from 'react-router-dom';
 import NewPost from './components/NewPost';
 import Login from './components/Login';
 
-  
- 
+
+
+
+
 
 class App extends Component 
 {
