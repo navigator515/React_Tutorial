@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {Component} from 'react';
 
 import CustomerDelete from './CustomerDelete';
-class Customer extends React.Component{
+class Customer extends Component{
     render(){
         return(
               
