@@ -59,7 +59,7 @@ return (
 
 <DialogContent>
 <Typography gutterBottom>
-선택한 고객 정보가 삭제됩니다.
+선택된 포스트가 삭제됩니다.
 </Typography>
 </DialogContent>
 
