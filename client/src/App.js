@@ -11,6 +11,9 @@ import Login from './components/Login';
 
 
 
+// CORS 설정
+app.use(cors());
+
 
 class App extends Component 
 {
@@ -25,6 +28,9 @@ constructor(props){
   this.stateRefresh=this.stateRefresh.bind(this);
   this.handleValueChange=this.handleValueChange.bind(this)
 }
+
+
+
 
 stateRefresh=()=>{
   this.setState({
@@ -89,4 +95,5 @@ render() {
   );
   }
   }
+ 
 export default App;

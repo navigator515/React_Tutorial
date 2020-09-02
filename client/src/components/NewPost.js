@@ -21,7 +21,11 @@ class NewPost extends Component{
         
     }
   
-
+    componentWillMount() {
+        fetch('http://15.165.108.107:5000/api/customers')
+            .then(res => res.json())
+            .then(data => console.log(data));
+    }
     addCustomer=() =>{
         const url='/api/customers';
         const formData=new FormData();

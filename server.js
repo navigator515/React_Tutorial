@@ -1,16 +1,26 @@
 const fs=require('fs');
 
-const express=require('express');
+const express=require('express');//express 사용
 const bodyParser=require('body-parser');
-const app=express();
+const app=express();  //서버를 만드는 것 
 const port =process.env.PORT||5000;
+var cors = require('cors');
 
-app.use(bodyParser.json());
+
+
+// CORS 설정
+app.use(cors());
+
+
+app.use(bodyParser.json());//서버가 json포멧의 데이터를 읽을 수 있게 함 
 app.use(bodyParser.urlencoded({extended:true}));
 
 const data =fs.readFileSync('./database.json');
 const conf=JSON.parse(data);
 const mysql=require('mysql');
+
+
+
 
 
 const connection =mysql.createConnection({
@@ -26,12 +36,12 @@ connection.connect();
 const multer=require('multer');
 const upload= multer({dest:'./upload'})
 
-
+//get: 값 받아오기 
 app.get('/api/customers',(req,res)=>{
     connection.query(
         "SELECT * FROM CUSTOMER where isDeleted=0",
         (err,rows,fields) => {
-            res.send(rows);
+            res.send(rows); 
         }
         
       );
@@ -72,3 +82,4 @@ app.get('/api/customers',(req,res)=>{
             )
     });
     app.listen(port, ()=>console.log(`Listening on port ${port}`));
+    //서버 돌아가는지
